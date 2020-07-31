@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Altoritmo do método simplex, para maximização e com restrições <=" />
+    <meta name="description" content="Algoritmo do método simplex, para maximização e com restrições <=" />
     <!--Import Google Fontes-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import Folha de Estilos-->
@@ -12,9 +12,8 @@
     <link type="text/css" rel="stylesheet" href="src/style/materialize/css/materialize.min.css"
         media="screen,projection" />
     <meta name="keywords" content="simplex,altoritmo" />
-    <script type="text/javascript" src="funcoes.js" charset="UTF-8"></script>
-    <script type="text/javascript" src="fraction.js" charset="UTF-8"></script>
-    <link rel="icon" href="information.jpg" />
+    
+    <link rel="icon" href="./src/imagens/information.jpg" />
     <title>Pesquisa Operacional</title>
 </head>
 
@@ -35,11 +34,11 @@
 
     <main>
         <section id="tab0-conteudo" class="card-panel desabilitar">
-            <div class="col s12 m7">
-                <h2 class="header">Projeto Simplex</h2>
-                <div class="card horizontal" style="margin-right: 350px;" aria-colindex="2">
+            <div class="container col s12 m7">
+                <span class="titulo">Projeto Simplex</span>
+                <div class="card horizontal" aria-colindex="2">
                     <div class="card-image">
-                        <img src="alfa3.jpg" width="800" height="300">
+                        <img src="./src/imagens/alfa3.jpg" width="800" height="300">
                     </div>
                     <div class="card-stacked">
                         <div class="card-content">
@@ -63,8 +62,7 @@
                         </div>
                         <div class="card-action">
                             <a href="http://www.instagram.com/unialfa/" target="blank"> UniAlfa</a>
-                            <img src="Instagram_icon.png" width="30" height="30">
-
+                            <img src="./src/imagens/Instagram_icon.png" width="30" height="30">
                         </div>
 
                     </div>
@@ -72,71 +70,98 @@
             </div>
 
         </section>
+
         <section id="tab1-conteudo" class="card-panel desabilitar">
-
-            <div class="row">
-                <div class="col-md-11">
-                    <h1>Simplex - Passo a Passo</h1>
-                </div>
-                <div class="col-md-1" style="float:right;">
-
-                    <a onClick="manual()">
-                        <img src="info.png" id="btnImg" title="Informações" onmouseover="mouseIn('img')"
-                            onmouseout="mouseOut('img')" />
-                    </a>
+            <div class="container">
+                <div class="row">
+                    <div class="col s10">
+                        <span class="titulo">Simplex - Passo a Passo</span>
+                    </div>
+                    <div class="col s2" >
+                        <a onClick="ExibirManual()">
+                            <img src="./src/imagens/info.png" id="btnImg" title="Informações" onmouseover="mouseIn('img')"
+                                onmouseout="mouseOut('img')" />
+                        </a>
+                    </div>
                 </div>
             </div>
-            <form name="form1" style="margin-right: 800px;">
+            <form name="form1" class="container">
                 <fieldset>
-                    <div class="row">
-                        <div class="col-md-2">
+                    <div class="row center">
+                        <div class="col s0 m2"></div>
+                        <div class="col s12 m8">
                             <label for="variaveis" class="lbl1">Quantas variáveis?</label>
-                        </div>
-                        <div class="col-md-1">
                             <input type="number" class="inp1" size="5%" maxlength="10" id="in1" name="variaveis"
-                                value="" min="1" autocomplete="off" autofocus style="height: 28px" />
+                            value="" min="1" autocomplete="off" autofocus style="height: 28px" />
                         </div>
+                        <div class="col s0 m2"></div>
                     </div>
                     <br />
-                    <div class="row">
-                        <div class="col-md-2">
+                    <div class="row center">
+                        <div class="col s0 m2"></div>
+                        <div class="col s12 m8">
                             <label for="regras" class="lbl1">Quantas restrições?</label>
-                        </div>
-                        <div class="col-md-2">
                             <input type="number" class="inp1" size="5%" maxlength="10" id="in2" name="regras" value=""
-                                min="1" autocomplete="off" style="height: 28px" />
+                            min="1" autocomplete="off" style="height: 28px" />
 
-                            <input type="button" class="inp1 btn btn-primary btn-sm" id="btn1" name="ok" value="ok"
-                                onClick="criarForm(variaveis.value,regras.value)" />
+                            <input type="button" class="inp1 btn btn-primary btn-large" id="btn1" name="ok" value="Iniciar"
+                                onClick="MonteFormularioRestricoes(variaveis.value,regras.value)" />
                         </div>
+                        <div class="col s0 m2"></div>
                     </div>
                 </fieldset>
             </form>
 
             <br />
             <form action="" method="post" name="form2" id="form2" style="display:none">
-                <p><b>Função objetivo</b></p>
-                <div id="aqui"></div>
+                <div id="configuracaoProgramacaoLinear" class="container">
+                    <p><b>Função objetivo</b></p>
+                </div>
                 <br />
-                <label><input type="button" class="btn btn-primary btn-sm" id="btn2" name="calc" value="Resolver"
-                        onClick="resolver()" /></label>
-                <label><input type="reset" class="btn btn-success btn-sm" id="btn3" name="novo" value="Novo"
-                        onClick="atualizar()" /></label>
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col s0 m4"></div>
+                        <div class="col s12 m4 center">
+                            <label>
+                                <input type="button" class="btn btn-primary btn-large" id="btn2" name="calc" value="Calcular"
+                                    onClick="CalcularSimplex()" />
+                            </label>
+                        </div>
+                        <div class="col s0 m4"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col s0 m4"></div>
+                        <div class="col s12 m4 center">
+                            <label>
+                                <input type="reset" class="btn btn-success btn-large" id="btn3" name="novo" value="Novo"
+                                    onClick="atualizar()" />
+                            </label>
+                        </div>
+                        <div class="col s0 m4"></div>
+                    </div>
+                </div>
             </form>
 
             <div id="tab" style="width: 80%; margin: 0 auto;"></div>
-            <label><input type="hidden" class="btn btn-success btn-sm" id="btn4" name="novo2" value="Novo"
-                    onClick="atualizar()" /></label>
+            
+            <div class="row">
+                <div class="col s0 m4"></div>
+                <div class="col s12 m4 center">
+                    <label><input type="hidden" class="btn btn-success btn-large" id="btn4" name="novo2" value="Novo"
+                            onClick="atualizar()" /></label>
+                    </div>
+                </div>
+                <div class="col s0 m4"></div>
             </div>
-
-
         </section>
+        
         <section id="tab2-conteudo" class="card-panel desabilitar">
-            <div class="col s12 m7">
-                <h2 class="header">Thiago dos Santos</h2>
-                <div class="card horizontal" style="margin-right: 600px;" aria-colindex="2">
+            <div class="container col s12 m7">
+                <span class="titulo">Thiago dos Santos</span>
+                <div class="card horizontal" aria-colindex="2">
                     <div class="card-image">
-                        <img src="img1.jpeg" width="400" height="200">
+                        <img src="./src/imagens/thiago.jpeg" width="400" height="200">
                     </div>
                     <div class="card-stacked">
                         <div class="card-content">
@@ -156,18 +181,18 @@
                         </div>
                         <div class="card-action">
                             <a href="http://www.instagram.com/thiagotsrock/" target="blank"> Instagram</a>
-                            <img src="Instagram_icon.png" width="30" height="30">
+                            <img src="./src/imagens/Instagram_icon.png" width="30" height="30">
 
                         </div>
 
                     </div>
                 </div>
             </div>
-            <div class="col s12 m7">
-                <h2 class="header">Diego</h2>
-                <div class="card horizontal" style="margin-right: 600px;">
+            <div class="container col s12 m7">
+                <span class="titulo">Diego Aleixo</span>
+                <div class="card horizontal" >
                     <div class="card-image">
-                        <img src="diego.jpg" width="400" height="200">
+                        <img src="./src/imagens/diego.jpg" width="400" height="200">
                     </div>
                     <div class="card-stacked">
                         <div class="card-content">
@@ -186,7 +211,7 @@
                         </div>
                         <div class="card-action">
                             <a href="http://www.instagram.com/di.aleixo/" target="blank"> Instagram</a>
-                            <img src="Instagram_icon.png" width="30" height="30">
+                            <img src="./src/imagens/Instagram_icon.png" width="30" height="30">
                         </div>
                     </div>
                 </div>
@@ -205,6 +230,8 @@
     <!--Scripts-->
     <script type="text/javascript" src="main.js"></script>
     <script type="text/javascript" src="src/style/materialize/js/materialize.min.js"></script>
+    <script type="text/javascript" src="funcoes.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="fraction.js" charset="UTF-8"></script>
 </body>
 
 </html>
